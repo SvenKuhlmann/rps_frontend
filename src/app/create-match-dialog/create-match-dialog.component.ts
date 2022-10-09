@@ -1,13 +1,13 @@
-import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatchService } from '../matchservice';
-import { MatButtonModule } from '@angular/material/button';
-import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorDialogComponent } from '../error-dialog/error-dialog.component';
+import { MatchService } from '../matchservice';
 
 @Component({
   selector: 'app-create-match-dialog',
@@ -27,7 +27,6 @@ export class CreateMatchDialogComponent implements OnInit {
   }
 
   create() {
-    console.log("create ", this.formGroup.getRawValue())
     this.matchService.post(this.formGroup.getRawValue()).subscribe({
       next: () => this.dialogRef.close(),
       error: error => this.displayErrorDialog(error)
@@ -35,7 +34,7 @@ export class CreateMatchDialogComponent implements OnInit {
   }
 
   displayErrorDialog(error: HttpErrorResponse): void {
-    let dialogRef = this.dialog.open(ErrorDialogComponent, {
+    this.dialog.open(ErrorDialogComponent, {
       data: { error: error },
     });
   }
