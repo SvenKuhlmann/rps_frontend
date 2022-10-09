@@ -1,0 +1,17 @@
+<div mat-dialog-title> Create New Match</div>
+<div mat-dialog-content>
+  <mat-form-field appearance="outline" style="width: 100%">
+    <mat-label> Name </mat-label>
+    <input matInput type="text" [formControl]="control">
+    <mat-error *ngIf="control.errors?.['required']">
+      Name is required.
+    </mat-error>
+    <mat-error *ngIf="control.errors?.['minlength']">
+      Name must be at least 4 characters long.
+    </mat-error>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+  <button mat-raised-button (click)="create()"> Create </button>
+  <button mat-raised-button mat-dialog-close> Close </button>
+</div>

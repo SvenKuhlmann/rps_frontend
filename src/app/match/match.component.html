@@ -1,0 +1,27 @@
+<div *ngIf="match && !error" fxLayout="column" fxLayoutAlign="space-around center" style="min-height: 70vh;">
+    <h1> Match : {{match.name}} </h1>
+    <mat-card fxLayout="row" fxLayoutAlign="space-around center">
+        <mat-card-title> Round Number : {{match.moves.length}}</mat-card-title>
+    </mat-card>
+    <div fxLayout="row" fxLayoutAlign="space-around center" style="width: 100%">
+        <mat-card style="width: 10em;">
+            <mat-card-title>Player:</mat-card-title>
+            <div style="font-size: 30px;"> {{wins}} </div>
+        </mat-card>
+        <mat-card style="width: 10em;">
+            <mat-card-title>AI:</mat-card-title>
+            <div style="font-size: 30px;"> {{looses}} </div>
+        </mat-card>
+    </div>
+    <h2> Choose your next Move! </h2>
+    <div fxLayout="row" fxLayoutAlign="center">
+        <button mat-raised-button (click)="send('rock')" matTooltip="Make a Rock Move"> Rock</button>
+        <button mat-raised-button (click)="send('paper')" matTooltip="Make a Paper Move"> Paper</button>
+        <button mat-raised-button (click)="send('scissor')" matTooltip="Make a Scissor Move"> Scissor</button>
+    </div>
+</div>
+<div *ngIf="error == 404" fxLayout="column" fxLayoutAlign="space-around center"  style="min-height: 80vh;">
+    <h1> Error 404 </h1>
+    <h1> Unable To Find Match</h1>
+    <button mat-raised-button [routerLink]="'/match'"> Show Match List </button>
+</div>
